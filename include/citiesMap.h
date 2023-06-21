@@ -31,6 +31,8 @@ private:
   
     std::map<int, DistanceFunction> distanceFunctions;
 
+    void insert(std::string cityName, double x, double y);
+
     void initilizedistanceFunctions();
 
 public:
@@ -39,12 +41,6 @@ public:
         this->initilizedistanceFunctions();
     }
     
-    void insertOrUpdate(std::string name, double x, double y);
-
-    void printCities(std::map<std::string, coordinate>::const_iterator beginIter, std::map<std::string, coordinate>::const_iterator endIter)const;
-
-    void printAllCities()const;
-
     void readCitiesFromFile(std::string path);
 
     void closeCities(std::string cityName, double radius, int distanceCalc) const;

@@ -8,28 +8,18 @@
 #include <vector>
  
 
-void citiesMap::insertOrUpdate(std::string cityName, double x, double y)
+void citiesMap::insert(std::string cityName, double x, double y)
 {	 
-	coordinate newCity = {  x, y };
+	coordinate newCity = { x, y };
 
 	this->cityMap.insert({ cityName,newCity });
 }
 
-void citiesMap::printCities(std::map<std::string, coordinate>::const_iterator beginIter, std::map<std::string, coordinate>::const_iterator endIter) const
-{
-   
-    std::transform(beginIter, endIter, std::ostream_iterator< std::string >(std::cout, "\n"),
-        [](const auto& pair) {
-            return  "name: "+ pair.first + " " + pair.second.toString();
-        });
-}
+ 
 
 
 
-void citiesMap::printAllCities()const
-{
-    this->printCities(this->cityMap.cbegin(), this->cityMap.cend());
-}
+ 
 
 
 double calculateEuclideanDistance(double x0, double y0, double x1, double y1) {
@@ -82,7 +72,7 @@ void citiesMap::readCitiesFromFile(std::string filename)
             throw std::runtime_error("Invalid data format in file: " + filename);
         }
 
-        this->insertOrUpdate(name, x, y);
+        this->insert(name, x, y);
     }
 
     
@@ -145,7 +135,7 @@ void citiesMap::closeCities( std::string  cityName, double radius, int distanceC
 
     std::transform(closeCity.begin(), closeCity.end(), std::ostream_iterator<std::string>(std::cout, "\n"),
         [](const auto& element) {
-            return element.first;
+            return element.first ;
         });
 
 }
